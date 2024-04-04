@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <title>Black Jack Game</title>
+</head>
+<body>
+   
+    <div class="black-jack">
+        <h1> Welcome to Blackjack</h1>
+        <div class="scores">
+            <p id="playerScore">Your Score</p>
+            <p id="computerScore">Bot Score</p>
+            <p id="gameResult"></p>
+        </div>
+        <div class="cards">
+            <div class="cards-slot player">
+               
+            </div>
+            <div class="cards-slot computer">
+
+            </div>
+        </div>
+        <button class="btn startgame">Start Game</button>
+        <div class="gameBtns hidden">
+            <button class='btn hit'>Hit</button>
+            <button class='btn stand'>Stand</button>
+            <button class='btn deal'>Deal</button>
+        </div>
+        <div class="results">
+            <table style="width:100%">
+                <tr>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Draws</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+             
+            </table>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
