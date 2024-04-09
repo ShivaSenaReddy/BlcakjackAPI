@@ -3,13 +3,37 @@ let standBtn = document.querySelector('.stand');
 let dealBtn = document.querySelector('.deal')
 let gameBtns = document.querySelector('.gameBtns')
 let startGame = document.querySelector('.startgame')
+let newGameEl = document.querySelector('.newGame')
 let cardSlotPlayer = document.querySelector('.player')
 let cardSlotComputer = document.querySelector('.computer')
 let playerScoreEle = document.getElementById('playerScore')
 let computerScoreEle = document.getElementById('computerScore')
 let gameResult = document.getElementById('gameResult')
 let deckId;
-
+let winsEl = document.getElementById('wins');
+let lossesEl = document.getElementById('losses');
+let drawsEl = document.getElementById('draws');
+let wins = 0;
+let draws = 0;
+let losses = 0;
+let scoreObject = { 'wins': 0, 'losses': 0, 'draws': 0 };
+function checkLocalStorage() {
+    if (localStorage.getItem('score')) {
+        scoreObject = JSON.parse(localStorage.getItem('score'))
+        wins = scoreObject.wins;
+        losses = scoreObject.losses;
+        draws = scoreObject.draws;
+        drawsEl.innerText = draws
+        winsEl.innerText = wins
+        lossesEl.innerText = losses
+    }
+    else {
+        drawsEl.innerText = draws
+        winsEl.innerText = wins
+        lossesEl.innerText = losses
+    }
+}
+checkLocalStorage();
 const cardValues = {
     '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7,
     '8': 8, '9': 9, '10': 10, 'JACK': 10, 'QUEEN': 10, 'KING': 10,
@@ -18,7 +42,7 @@ const cardValues = {
 let playerScore = 0;
 let computerScore = 0;
 startGame.addEventListener('click', gameStart)
-async function gameStart () {
+async function gameStart() {
     console.log('clicked')
     await getDeckOfCards()
     if (deckId) {
@@ -95,25 +119,37 @@ function computeScore(ele, score, data, scoreEle, bot = false) {
         hitBtn.disabled = true;
         if (!bot)
             scoreEle.textContent = 'You are Busted'
-        ele
+        else
         scoreEle.textContent = 'Bot Busted'
     }
     return score;
 }
 
 function declareWinner() {
-    if (computerScore > playerScore) {
+    if ((computerScore > playerScore && computerScore <= 21) || (playerScore > 21 && computerScore<=21)) {
         console.log('you loose')
+        losses++
         gameResult.innerText = 'you loose'
+        lossesEl.innerText = losses;
+        scoreObject.losses = losses;
+       
+        console.log(localStorage.getItem('score'),'local')
     }
-    else if (computerScore === playerScore) {
+    else if (computerScore === playerScore ||( (computerScore > 21) && (playerScore>21))) {
         console.log('tie')
         gameResult.innerText = 'tie'
-
+      
+        draws++
+        drawsEl.innerText = draws
+        scoreObject.draws = draws;
     }
-    else
+    else if ((playerScore > computerScore && playerScore < 21) || (playerScore <= 21 && computerScore > 21)) {
         gameResult.innerText = 'you win'
-
+        wins++
+        scoreObject.wins = wins;
+        winsEl.innerText = wins;
+    }
+    localStorage.setItem('score', JSON.stringify(scoreObject))
 }
 
 dealBtn.addEventListener('click', clearCards)
@@ -121,7 +157,19 @@ function clearCards() {
     cardSlotPlayer.innerHTML = ''
     cardSlotComputer.innerHTML = ''
     gameResult.innerText = ''
-
     computerScore = 0;
     playerScore = 0;
+    computerScoreEle.innerText ='Computer Score: '+ 0;
+    playerScoreEle.innerText = 'Your Score: ' + 0;
+    hitBtn.disabled = false;
+  
 }
+
+newGameEl.addEventListener('click',  ()=> {
+    localStorage.removeItem('score');
+    checkLocalStorage();
+    clearCards();
+    winsEl.innerText = 0;
+    lossesEl.innerText = 0;
+    drawsEl.innerText = 0;
+})

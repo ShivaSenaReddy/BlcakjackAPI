@@ -44,6 +44,10 @@ body{
     color: white;
 }
 
+.newGame {
+   background-color: #e84118;
+   color:white;
+}
 .hit {
     background-color: #f1c40f;
 }
