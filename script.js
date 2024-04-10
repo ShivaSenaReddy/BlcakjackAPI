@@ -146,7 +146,7 @@ function declareWinner() {
         drawsEl.innerText = draws
         scoreObject.draws = draws;
     }
-    else if ((playerScore > computerScore && playerScore < 21) || (playerScore <= 21 && computerScore > 21)) {
+    else if ((playerScore > computerScore && playerScore <=21) || (playerScore <= 21 && computerScore > 21)) {
         gameResult.innerText = 'you win'
         wins++
         scoreObject.wins = wins;
