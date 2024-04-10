@@ -66,3 +66,28 @@ table, td, th {
     height:150px;
     padding:2px;
 }
+
+.pop-up {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    margin: auto;
+    height: 300px;
+    width: 500px;
+    background-color: #227dd7;
+    color: white;
+    display: none;
+}
+    .pop-up > div {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+    }
+
+.instructions {
+    background-color: #f1c40f;
+}

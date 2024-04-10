@@ -7,7 +7,7 @@
     <title>Black Jack Game</title>
 </head>
 <body>
-   
+
     <div class="black-jack">
         <h1> Welcome to Blackjack</h1>
         <div class="scores">
@@ -17,12 +17,34 @@
         </div>
         <div class="cards">
             <div class="cards-slot player">
-               
+
             </div>
             <div class="cards-slot computer">
 
             </div>
         </div>
+
+        <div class="pop-up">
+            <div>
+                <p>Instructions to play this version of black jack</p>
+                <ion-icon name="close-outline" id="closePopup"></ion-icon>
+            </div>
+            <ol>
+                <li>click Start Game</li>
+                <li>You will get 3 options.Hit,Stand,Deal  </li>
+                <li>Hit will pick a card from the pack</li>
+                <li>
+                    your card value follows the regular black jack rules.
+                </li>
+                <li>
+                    You can pick as many cards but ensure that your sum of card values wont exceed 21. Then
+                    you are busted as per regular blackjack
+                </li>
+                <li>Once you click 'stand' button the computer/bot picks its cards</li>
+                <li>Click on Deal to start picking the cards again</li>
+            </ol>
+        </div>
+        <button class="btn instructions">Click to know the instructions</button>
         <button class="btn startgame">Start Game</button>
         <div class="gameBtns hidden">
             <button class='btn hit'>Hit</button>
@@ -41,11 +63,13 @@
                     <td id="losses">0</td>
                     <td id="draws">0</td>
                 </tr>
-             
+
             </table>
         </div>
         <button class="btn newGame">Click to Reset Score</button>
     </div>
     <script src="script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

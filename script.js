@@ -17,6 +17,9 @@ let wins = 0;
 let draws = 0;
 let losses = 0;
 let scoreObject = { 'wins': 0, 'losses': 0, 'draws': 0 };
+let closePopupBtn = document.getElementById('closePopup')
+let popUp = document.querySelector('.pop-up');
+let instructions = document.querySelector('.instructions')
 function checkLocalStorage() {
     if (localStorage.getItem('score')) {
         scoreObject = JSON.parse(localStorage.getItem('score'))
@@ -172,4 +175,12 @@ newGameEl.addEventListener('click',  ()=> {
     winsEl.innerText = 0;
     lossesEl.innerText = 0;
     drawsEl.innerText = 0;
+})
+
+closePopupBtn.addEventListener('click', ()=>{
+    console.log('yo')
+    popUp.style.display = 'none';
+})
+instructions.addEventListener('click', () => {
+    popUp.style.display = 'block';
 })
